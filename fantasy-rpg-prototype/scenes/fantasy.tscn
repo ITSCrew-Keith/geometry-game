@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjrjrlameij0q"]
+
+[ext_resource type="Script" path="res://scenes/character_body_2d.gd" id="1_bjte1"]
+[ext_resource type="Script" path="res://scenes/area_2d.gd" id="1_pt4s8"]
+[ext_resource type="Script" path="res://scenes/character_body_2d_2.gd" id="2_xu72a"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rhvc0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_41b6s"]
+size = Vector2(30, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82rdx"]
+size = Vector2(24, 25)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_al2y8"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1, -1)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_bjte1")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(-0.874998, 0)
+scale = Vector2(29.75, 32)
+texture = SubResource("PlaceholderTexture2D_rhvc0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_41b6s")
+
+[node name="CharacterBody2D8" type="CharacterBody2D" parent="." groups=["enemy"]]
+position = Vector2(-526.08, -280.987)
+script = ExtResource("2_xu72a")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D8"]
+position = Vector2(2.07979, -1.01297)
+scale = Vector2(25.0657, 27.0663)
+texture = SubResource("PlaceholderTexture2D_rhvc0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D8"]
+position = Vector2(2.07977, -1.51297)
+shape = SubResource("RectangleShape2D_82rdx")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_pt4s8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_al2y8")
+
+[node name="CharacterBody2D9" type="CharacterBody2D" parent="." groups=["enemy"]]
+position = Vector2(-552.223, 280.281)
+script = ExtResource("2_xu72a")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D9"]
+position = Vector2(2.07979, -1.01297)
+scale = Vector2(25.0657, 27.0663)
+texture = SubResource("PlaceholderTexture2D_rhvc0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D9"]
+position = Vector2(2.07977, -1.51297)
+shape = SubResource("RectangleShape2D_82rdx")
+
+[node name="CharacterBody2D10" type="CharacterBody2D" parent="." groups=["enemy"]]
+position = Vector2(488.806, 260.099)
+script = ExtResource("2_xu72a")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D10"]
+position = Vector2(2.07979, -1.01297)
+scale = Vector2(25.0657, 27.0663)
+texture = SubResource("PlaceholderTexture2D_rhvc0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D10"]
+position = Vector2(2.07977, -1.51297)
+shape = SubResource("RectangleShape2D_82rdx")
+
+[node name="CharacterBody2D11" type="CharacterBody2D" parent="." groups=["enemy"]]
+position = Vector2(492.17, -294.892)
+script = ExtResource("2_xu72a")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D11"]
+position = Vector2(2.07979, -1.01297)
+scale = Vector2(25.0657, 27.0663)
+texture = SubResource("PlaceholderTexture2D_rhvc0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D11"]
+position = Vector2(2.07977, -1.51297)
+shape = SubResource("RectangleShape2D_82rdx")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
