@@ -6,7 +6,7 @@ extends CharacterBody2D
 
 
 func _physics_process(delta: float) -> void:
-	var speed = 700 + (Global.timer / 10)
+	var speed = 700 + (Global.timer / 10) + (Global.e_speed)
 	var direction = (target.position-position).normalized()
 	velocity = direction * speed
 	if Global.jump_counter > 0:

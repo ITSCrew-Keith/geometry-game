@@ -1,5 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://cjrjrlameij0q"]
+[gd_scene load_steps=26 format=3 uid="uid://cjrjrlameij0q"]
 
+[ext_resource type="Script" path="res://scenes/powerup_manager.gd" id="1_ocsav"]
 [ext_resource type="Script" path="res://scripts/movement2.gd" id="1_q446l"]
 [ext_resource type="Texture2D" uid="uid://c0lcbpyytn8it" path="res://assets/Player Cube.png" id="2_oma4f"]
 [ext_resource type="Script" path="res://scripts/chaser.gd" id="2_soyhg"]
@@ -8,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/dasher.gd" id="7_kfd1g"]
 [ext_resource type="Script" path="res://scripts/counter.gd" id="7_q58bd"]
 [ext_resource type="Texture2D" uid="uid://cvyxln3xn2mxw" path="res://assets/New Piskel-3-1.png.png" id="8_5e0on"]
+[ext_resource type="Texture2D" uid="uid://cp2gbsu1bwdib" path="res://assets/background.jpg" id="9_nil8h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xmtyh"]
 size = Vector2(21, 21)
@@ -82,7 +84,16 @@ animations = [{
 "speed": 60.0
 }]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_die14"]
+distance = -167.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_egl6b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfs7q"]
+size = Vector2(73, 5685.31)
+
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_ocsav")
 
 [node name="chasers" type="CharacterBody2D" parent="."]
 position = Vector2(629.846, 0)
@@ -148,6 +159,60 @@ texture = ExtResource("8_5e0on")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="dasher"]
 shape = SubResource("CircleShape2D_ftf47")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(2400, 1617)
+scale = Vector2(0.955346, 0.926286)
+texture = ExtResource("9_nil8h")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+z_index = -5
+position = Vector2(-5154.5, -3484.89)
+rotation = -3.14159
+scale = Vector2(1.05638, 1.00016)
+texture = ExtResource("9_nil8h")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+z_index = -5
+position = Vector2(-5133.22, 6.47778)
+scale = Vector2(1.06406, 1.00031)
+texture = ExtResource("9_nil8h")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D/Sprite2D2"]
+z_index = -5
+position = Vector2(4974.07, 1.62952)
+texture = ExtResource("9_nil8h")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Sprite2D2/Sprite2D2"]
+z_index = -5
+position = Vector2(-13.5771, -3489.74)
+rotation = -3.14159
+scale = Vector2(1.01027, 1.00016)
+texture = ExtResource("9_nil8h")
+flip_h = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 63)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-5, 2370)
+shape = SubResource("WorldBoundaryShape2D_die14")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-5, -2370)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_egl6b")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-3958, 47)
+shape = SubResource("RectangleShape2D_wfs7q")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3756, -49)
+shape = SubResource("RectangleShape2D_wfs7q")
+
+[connection signal="coin" from="." to="." method="_on_coin"]
 [connection signal="mouse_entered" from="chasers" to="player" method="_on_enemy_1_mouse_entered"]
 [connection signal="mouse_shape_entered" from="chasers" to="player" method="_on_enemy_1_mouse_shape_entered"]
 [connection signal="body_entered" from="chasers/enemy hitbox" to="chasers/enemy hitbox" method="_on_body_entered"]
