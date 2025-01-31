@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bksts3vx6u0hf"]
+
+[ext_resource type="Script" path="res://scripts/dasher.gd" id="1_5fojn"]
+[ext_resource type="Script" path="res://scripts/enemy_hitbox.gd" id="2_p6nkb"]
+[ext_resource type="Texture2D" uid="uid://cvyxln3xn2mxw" path="res://assets/New Piskel-3-1.png.png" id="3_2mdrn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrvkh"]
+size = Vector2(21, 21)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sd8d1"]
+radius = 9.73847
+
+[node name="dasher" type="CharacterBody2D"]
+position = Vector2(-520.385, 8.22272)
+script = ExtResource("1_5fojn")
+
+[node name="enemy hitbox2" type="Area2D" parent="."]
+script = ExtResource("2_p6nkb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy hitbox2"]
+position = Vector2(-0.346008, 0.177002)
+shape = SubResource("RectangleShape2D_rrvkh")
+
+[node name="Sprite2D" type="Sprite2D" parent="enemy hitbox2"]
+position = Vector2(0.5, -8.34465e-07)
+scale = Vector2(0.593751, 0.625)
+texture = ExtResource("3_2mdrn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sd8d1")
+
+[connection signal="body_entered" from="enemy hitbox" to="enemy hitbox" method="_on_body_entered"]
+[connection signal="body_entered" from="enemy hitbox2" to="enemy hitbox2" method="_on_body_entered"]
