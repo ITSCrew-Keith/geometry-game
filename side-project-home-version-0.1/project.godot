@@ -19,6 +19,11 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 player="*res://scripts/character_body_2d.gd"
 Global="*res://scripts/Global.gd"
 
+[global_group]
+
+laser=""
+enemy=""
+
 [input]
 
 shoot={

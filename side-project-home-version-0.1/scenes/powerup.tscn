@@ -19,3 +19,4 @@ texture = SubResource("PlaceholderTexture2D_wqo1i")
 shape = SubResource("CircleShape2D_umi2e")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="coin_collection" from="." to="." method="_on_coin_collection"]

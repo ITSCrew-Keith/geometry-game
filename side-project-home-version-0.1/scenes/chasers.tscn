@@ -10,8 +10,10 @@ size = Vector2(21, 21)
 [sub_resource type="CircleShape2D" id="CircleShape2D_uv4lx"]
 radius = 9.73847
 
-[node name="chasers" type="CharacterBody2D"]
+[node name="chasers" type="CharacterBody2D" groups=["enemy"]]
 position = Vector2(629.846, 0)
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("1_t3q1m")
 
 [node name="enemy hitbox2" type="Area2D" parent="."]
@@ -29,4 +31,5 @@ texture = ExtResource("3_76jvl")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_uv4lx")
 
+[connection signal="area_entered" from="enemy hitbox2" to="enemy hitbox2" method="_on_area_entered"]
 [connection signal="body_entered" from="enemy hitbox2" to="enemy hitbox2" method="_on_body_entered"]

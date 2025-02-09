@@ -9,3 +9,6 @@ func _on_body_entered(body: Node2D) -> void:
 		Global.coin_counter = 450
 		Global.e_speed = 0
 		Global.enemy_counter = 100
+	if body.is_in_group("laser"):
+		print("killed")
+		queue_free()
