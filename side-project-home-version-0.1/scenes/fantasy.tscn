@@ -1,9 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cjrjrlameij0q"]
 
 [ext_resource type="PackedScene" uid="uid://cxfftgj2dnch4" path="res://scenes/player.tscn" id="1_vt1as"]
-[ext_resource type="PackedScene" uid="uid://citkcx7jef8d3" path="res://scenes/helper.tscn" id="5_lnpwj"]
-[ext_resource type="PackedScene" uid="uid://bksts3vx6u0hf" path="res://scenes/dasher.tscn" id="6_xspjt"]
-[ext_resource type="PackedScene" uid="uid://dupigqfs5042k" path="res://scenes/chasers.tscn" id="8_4w78b"]
+[ext_resource type="Script" path="res://scripts/laser_controls.gd" id="2_geh38"]
 [ext_resource type="Texture2D" uid="uid://cp2gbsu1bwdib" path="res://assets/background.jpg" id="9_nil8h"]
 
 [sub_resource type="GDScript" id="GDScript_5wrwe"]
@@ -22,6 +20,8 @@ func _physics_process(delta: float) -> void:
 	if Global.coin_counter == 0:
 		emit_signal(\"coin\")	
 		emit_signal(\"chaser\")
+		emit_signal(\"dasher\")
+		emit_signal(\"helper\")
 		Global.coin_counter = 500
 		
 
@@ -37,9 +37,17 @@ func _on_chaser() -> void:
 	instance2.position = Vector2(randi_range(-3958,3756) ,randi_range(-2100,2400))
 	add_child(instance2)
 	var instance3 = dasher_node.instantiate()
-	instance2.position = Vector2(randi_range(-3958,3756) ,randi_range(-2100,2400))
+	instance3.position = Vector2(randi_range(-3958,3756) ,randi_range(-2100,2400))
 	add_child(instance3)
+	var instance4 = helper_node.instantiate()
+	instance4.position = Vector2(randi_range(-3958,3756) ,randi_range(-2100,2400))
+	add_child(instance4)
 "
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1od1"]
+size = Vector2(1070, 20)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qmoyt"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_die14"]
 distance = -167.0
@@ -53,10 +61,21 @@ size = Vector2(73, 5685.31)
 script = SubResource("GDScript_5wrwe")
 
 [node name="player" parent="." instance=ExtResource("1_vt1as")]
+collision_layer = 129
+collision_mask = 129
 
-[node name="chasers" parent="." instance=ExtResource("8_4w78b")]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="player" groups=["laser"]]
+position = Vector2(0, -15)
+script = ExtResource("2_geh38")
 
-[node name="dasher" parent="." instance=ExtResource("6_xspjt")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/CharacterBody2D"]
+position = Vector2(599, 0)
+shape = SubResource("RectangleShape2D_n1od1")
+
+[node name="Sprite2D" type="Sprite2D" parent="player/CharacterBody2D/CollisionShape2D"]
+position = Vector2(-11.0001, 3.57628e-07)
+scale = Vector2(1138, 20)
+texture = SubResource("PlaceholderTexture2D_qmoyt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -5
@@ -110,9 +129,6 @@ shape = SubResource("RectangleShape2D_wfs7q")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(3756, -49)
 shape = SubResource("RectangleShape2D_wfs7q")
-
-[node name="help" parent="." instance=ExtResource("5_lnpwj")]
-position = Vector2(-2, 279)
 
 [connection signal="chaser" from="." to="." method="_on_chaser"]
 [connection signal="coin" from="." to="." method="_on_coin"]
