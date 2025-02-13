@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://boxuq3w33et84"]
+
+[ext_resource type="Script" path="res://scripts/powerup.gd" id="1_i7835"]
+[ext_resource type="Texture2D" uid="uid://cte4g6ghvwxw0" path="res://assets/New Piskel-1.png (6).png" id="2_j4mvq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_umi2e"]
+radius = 25.4951
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 128
+collision_mask = 128
+script = ExtResource("1_i7835")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.12499, 2.5)
+scale = Vector2(3.67969, 3.53125)
+texture = ExtResource("2_j4mvq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_umi2e")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="coin_collection" from="." to="." method="_on_coin_collection"]
