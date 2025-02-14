@@ -1,0 +1,92 @@
+[gd_scene load_steps=14 format=3 uid="uid://cxfftgj2dnch4"]
+
+[ext_resource type="Script" path="res://scripts/movement2.gd" id="1_4hv4v"]
+[ext_resource type="Script" path="res://scripts/counter.gd" id="2_t3xad"]
+[ext_resource type="Texture2D" uid="uid://dudy0d3uymvg6" path="res://assets/SKIBIDID.png" id="3_p3oln"]
+[ext_resource type="Script" path="res://scripts/label2.gd" id="3_piwq4"]
+[ext_resource type="Script" path="res://scripts/animated_sprite_2d.gd" id="4_mtesk"]
+[ext_resource type="Texture2D" uid="uid://rndkuh86bjic" path="res://assets/New Piskel-6.png" id="7_laexo"]
+[ext_resource type="Script" path="res://scenes/battery.gd" id="8_3ecuf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vlax"]
+size = Vector2(30, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhjh4"]
+atlas = ExtResource("7_laexo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2oqe2"]
+atlas = ExtResource("7_laexo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eknpx"]
+atlas = ExtResource("7_laexo")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gyuu"]
+atlas = ExtResource("7_laexo")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0inoa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhjh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2oqe2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eknpx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gyuu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="player" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_4hv4v")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(2, -16)
+shape = SubResource("RectangleShape2D_1vlax")
+
+[node name="Label2" type="Label" parent="."]
+z_index = 6
+offset_left = -1090.0
+offset_top = -631.0
+offset_right = -808.0
+offset_bottom = -457.0
+scale = Vector2(0.991967, 0.991071)
+theme_override_font_sizes/font_size = 60
+text = "skibidi"
+script = ExtResource("2_t3xad")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -8.0
+offset_top = -62.0
+offset_right = 279.0
+offset_bottom = 74.0
+text = "skibdi"
+script = ExtResource("3_piwq4")
+
+[node name="Camera2D2" type="Camera2D" parent="."]
+position = Vector2(1, -1)
+zoom = Vector2(2, 2)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(2, -15.5)
+scale = Vector2(0.277778, 0.239583)
+texture = ExtResource("3_p3oln")
+script = ExtResource("4_mtesk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1030, -589)
+scale = Vector2(6.42125, 4.70375)
+sprite_frames = SubResource("SpriteFrames_0inoa")
+script = ExtResource("8_3ecuf")
