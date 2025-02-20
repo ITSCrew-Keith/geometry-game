@@ -14,6 +14,7 @@ signal chaser
 @onready var dasher_node: PackedScene = preload(\"res://scenes/dasher.tscn\")
 @onready var helper_node: PackedScene = preload(\"res://scenes/helper.tscn\")
 @onready var phase_dasher_node: PackedScene = preload(\"res://scenes/phase_dasher.tscn\")
+@onready var bomb_carry_node: PackedScene = preload(\"res://scenes/bomb_carry.tscn\")
 
 func _physics_process(delta: float) -> void:
 	if Global.enemy_counter == 0:
@@ -50,6 +51,9 @@ func _on_chaser() -> void:
 	var instance5 = phase_dasher_node.instantiate()
 	instance5.position = Vector2(randi_range(-3958,3756) ,randi_range(-2100,2400))
 	add_child(instance5)
+	var instance6 = bomb_carry_node.instantiate()
+	instance6.position = Vector2(randi_range(-3958,3756) ,randi_range(-2100,2400))
+	add_child(instance6)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1od1"]
