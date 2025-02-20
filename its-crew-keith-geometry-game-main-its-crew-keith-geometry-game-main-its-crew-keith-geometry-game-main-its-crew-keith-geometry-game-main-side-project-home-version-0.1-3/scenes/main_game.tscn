@@ -1,0 +1,166 @@
+[gd_scene load_steps=13 format=3 uid="uid://cjrjrlameij0q"]
+
+[ext_resource type="PackedScene" uid="uid://cxfftgj2dnch4" path="res://scenes/player.tscn" id="1_agmb1"]
+[ext_resource type="Script" path="res://scripts/laser_controls.gd" id="2_xdtot"]
+[ext_resource type="Texture2D" uid="uid://dmv18mygricxj" path="res://assets/New Piskel-2-2.png" id="3_xl30v"]
+[ext_resource type="Texture2D" uid="uid://cp2gbsu1bwdib" path="res://assets/background.jpg" id="4_dtf67"]
+
+[sub_resource type="GDScript" id="GDScript_5wrwe"]
+script/source = "extends Node2D
+signal coin
+signal chaser
+@onready var powerup_node: PackedScene = preload(\"res://scenes/powerup.tscn\")
+@onready var chaser_node: PackedScene = preload(\"res://scenes/chasers.tscn\")
+@onready var dasher_node: PackedScene = preload(\"res://scenes/dasher.tscn\")
+@onready var helper_node: PackedScene = preload(\"res://scenes/helper.tscn\")
+@onready var phase_dasher_node: PackedScene = preload(\"res://scenes/phase_dasher.tscn\")
+
+func _physics_process(delta: float) -> void:
+	if Global.enemy_counter == 0:
+		print(\"enemy_spawned\")
+		Global.enemy_counter = 6000
+	if Global.coin_counter == 0:
+		emit_signal(\"coin\")	
+		emit_signal(\"chaser\")
+		emit_signal(\"dasher\")
+		emit_signal(\"helper\")
+		Global.coin_counter = 500
+	Global.enemy_counter -= 1
+	Global.coin_counter -= 1
+	Global.timer += 1
+		
+
+
+
+func _on_coin() -> void:
+	var instance = powerup_node.instantiate()
+	instance.position = Vector2(randi_range(-3958,3756) ,randi_range(-2100,2400))
+	add_child(instance)
+
+func _on_chaser() -> void:
+	var instance2 = chaser_node.instantiate()
+	instance2.position = Vector2(randi_range(-3958,3756) ,randi_range(-2100,2400))
+	add_child(instance2)
+	var instance3 = dasher_node.instantiate()
+	instance3.position = Vector2(randi_range(-3958,3756) ,randi_range(-2100,2400))
+	add_child(instance3)
+	var instance4 = helper_node.instantiate()
+	instance4.position = Vector2(randi_range(-3958,3756) ,randi_range(-2100,2400))
+	add_child(instance4)
+	var instance5 = phase_dasher_node.instantiate()
+	instance5.position = Vector2(randi_range(-3958,3756) ,randi_range(-2100,2400))
+	add_child(instance5)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1od1"]
+size = Vector2(1055.75, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avfss"]
+atlas = ExtResource("3_xl30v")
+region = Rect2(0, 0, 288, 1152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gvv7"]
+atlas = ExtResource("3_xl30v")
+region = Rect2(288, 0, 288, 1152)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xu8pw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avfss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gvv7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_die14"]
+distance = -167.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_egl6b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfs7q"]
+size = Vector2(73, 5685.31)
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_5wrwe")
+
+[node name="player" parent="." instance=ExtResource("1_agmb1")]
+collision_layer = 129
+collision_mask = 129
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="player" groups=["laser"]]
+visible = false
+position = Vector2(0, -15)
+script = ExtResource("2_xdtot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/CharacterBody2D"]
+position = Vector2(591.125, 1)
+shape = SubResource("RectangleShape2D_n1od1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player/CharacterBody2D"]
+z_index = 5
+position = Vector2(573.658, -0.0658464)
+rotation = 1.5708
+scale = Vector2(0.306397, 0.959436)
+sprite_frames = SubResource("SpriteFrames_xu8pw")
+autoplay = "default"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 63)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-5, 2370)
+shape = SubResource("WorldBoundaryShape2D_die14")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-5, -2370)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_egl6b")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-3958, 47)
+shape = SubResource("RectangleShape2D_wfs7q")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3756, -49)
+shape = SubResource("RectangleShape2D_wfs7q")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+z_index = -5
+position = Vector2(2400, 1554)
+scale = Vector2(0.955346, 0.926286)
+texture = ExtResource("4_dtf67")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/Sprite2D"]
+z_index = -5
+position = Vector2(-5154.5, -3484.89)
+rotation = -3.14159
+scale = Vector2(1.05638, 1.00016)
+texture = ExtResource("4_dtf67")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D/Sprite2D"]
+z_index = -5
+position = Vector2(-5133.22, 6.47778)
+scale = Vector2(1.06406, 1.00031)
+texture = ExtResource("4_dtf67")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D/Sprite2D/Sprite2D2"]
+z_index = -5
+position = Vector2(4974.07, 1.62952)
+texture = ExtResource("4_dtf67")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/Sprite2D/Sprite2D2/Sprite2D2"]
+z_index = -5
+position = Vector2(-13.5771, -3489.74)
+rotation = -3.14159
+scale = Vector2(1.01027, 1.00016)
+texture = ExtResource("4_dtf67")
+flip_h = true
+
+[connection signal="chaser" from="." to="." method="_on_chaser"]
+[connection signal="coin" from="." to="." method="_on_coin"]
