@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccgr1b10gaodo"]
+
+[ext_resource type="Script" path="res://scripts/guide.gd" id="1_0u7xn"]
+[ext_resource type="Texture2D" uid="uid://cp2gbsu1bwdib" path="res://assets/background.jpg" id="2_inorh"]
+[ext_resource type="FontFile" uid="uid://dm4e1te4jkwie" path="res://assets/AstroSpace-0Wl3o.otf" id="3_qrgbe"]
+[ext_resource type="Script" path="res://scripts/start_menu_text.gd" id="4_sfgaq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_80pug"]
+font = ExtResource("3_qrgbe")
+font_size = 50
+font_color = Color(1, 0.698039, 0, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_0u7xn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-8, 18)
+scale = Vector2(0.651857, 0.651857)
+texture = ExtResource("2_inorh")
+
+[node name="Camera2D" type="Camera2D" parent="Sprite2D"]
+zoom = Vector2(2.5, 2.5)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -845.0
+offset_top = -297.0
+offset_right = 846.0
+offset_bottom = -247.0
+text = "The goal of the game is to survive the longest you can
+reds follow you light blues dash towards  you greens
+rotate towards you and the other colors get added on 
+                                      during gameplay
+
+                                               controls
+
+
+                                           shift = boost
+                                           space= laser
+                      mouse location =movement direction
+                                   M to reutrn to menu"
+label_settings = SubResource("LabelSettings_80pug")
+script = ExtResource("4_sfgaq")
