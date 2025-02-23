@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://duya8agoadlof"]
+
+[ext_resource type="Script" path="res://scripts/menus and manager/start_menu.gd" id="1_r560x"]
+[ext_resource type="Texture2D" uid="uid://cp2gbsu1bwdib" path="res://assets/world_sprites/background.jpg" id="2_ajsmo"]
+[ext_resource type="FontFile" uid="uid://dm4e1te4jkwie" path="res://assets/player and hud/AstroSpace-0Wl3o.otf" id="2_sooa4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ojjm"]
+line_spacing = 1.0
+font = ExtResource("2_sooa4")
+font_size = 34
+font_color = Color(1, 0.698039, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7bbap"]
+line_spacing = 90.0
+font = ExtResource("2_sooa4")
+font_size = 75
+font_color = Color(1, 0.698039, 0, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_r560x")
+
+[node name="main_text" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -257.0
+offset_top = -15.0
+offset_right = 248.0
+offset_bottom = 251.0
+theme_override_colors/font_color = Color(0.990622, 0.574757, 0, 1)
+theme_override_fonts/font = ExtResource("2_sooa4")
+theme_override_font_sizes/font_size = 34
+text = "ENTER to play
+
+BACKSPACE to exit
+
+t for tutorial
+
+a for achievements
+
+"
+label_settings = SubResource("LabelSettings_5ojjm")
+horizontal_alignment = 1
+autowrap_mode = 2
+visible_characters_behavior = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(2, 11)
+scale = Vector2(0.198, 0.14573)
+texture = ExtResource("2_ajsmo")
+
+[node name="Camera2D" type="Camera2D" parent="Sprite2D"]
+position = Vector2(0, 3.8147e-06)
+scale = Vector2(145.291, 179.825)
+zoom = Vector2(2, 2)
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -278.0
+offset_top = -147.0
+offset_right = 313.0
+offset_bottom = -37.0
+text = "orange void"
+label_settings = SubResource("LabelSettings_7bbap")
