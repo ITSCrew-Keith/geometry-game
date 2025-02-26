@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccgr1b10gaodo"]
+
+[ext_resource type="Script" path="res://scripts/menus and manager/guide.gd" id="1_0u7xn"]
+[ext_resource type="Texture2D" uid="uid://cp2gbsu1bwdib" path="res://assets/world_sprites/background.jpg" id="2_inorh"]
+[ext_resource type="FontFile" uid="uid://dm4e1te4jkwie" path="res://assets/player and hud/AstroSpace-0Wl3o.otf" id="3_qrgbe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_80pug"]
+line_spacing = 15.0
+font = ExtResource("3_qrgbe")
+font_size = 33
+font_color = Color(1, 0.698039, 0, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_0u7xn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-8, 18)
+scale = Vector2(0.651857, 0.651857)
+texture = ExtResource("2_inorh")
+
+[node name="Camera2D" type="Camera2D" parent="Sprite2D"]
+zoom = Vector2(2.5, 2.5)
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -675.0
+offset_top = -383.0
+offset_right = 664.0
+offset_bottom = 447.0
+text = "Welcome to Orange Void!
+In this game, your goal is to survive as long as you can,
+but beware! There are multiple enemies trying to take you
+down. But, there is a way to stop them. By shooting a laser,
+you can easily eliminate these enemies. But, using this laser
+will cost you energy. So, you must be smart! Eventually,
+though, the laser recharges on it's own, so don't worry.
+
+You move around by pointing your mouse the way you want
+to go. You can also use a boost, but this is limited. You can tell
+how much boost you have with the battery on the top right.
+You can also pivot to aim without having to move.
+
+Press right arrow or D to move to the next page."
+label_settings = SubResource("LabelSettings_80pug")
+horizontal_alignment = 1
+vertical_alignment = 1
