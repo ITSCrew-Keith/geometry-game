@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfdlnxolc2kpt"]
+
+[ext_resource type="Script" path="res://scripts/animations/cpu_particles_2d.gd" id="1_xi12v"]
+
+[sub_resource type="Curve" id="Curve_ynx2u"]
+_data = [Vector2(0.00561798, 1), 0.0, 0.0, 0, 0, Vector2(0.994382, 0.021978), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+emitting = false
+amount = 170
+lifetime = 3.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.75
+emission_shape = 1
+emission_sphere_radius = 29.39
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.91
+initial_velocity_max = 100.0
+scale_amount_min = 3.0
+scale_amount_max = 15.05
+scale_amount_curve = SubResource("Curve_ynx2u")
+color = Color(0.977149, 0.68173, 1.00112e-05, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+script = ExtResource("1_xi12v")

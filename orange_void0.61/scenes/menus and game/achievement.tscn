@@ -1,0 +1,208 @@
+[gd_scene load_steps=25 format=3 uid="uid://bqjfkvr53nco7"]
+
+[ext_resource type="Texture2D" uid="uid://cp2gbsu1bwdib" path="res://assets/world_sprites/background.jpg" id="1_3v5lm"]
+[ext_resource type="Script" path="res://scripts/animations/achievement_manager.gd" id="1_k4fse"]
+[ext_resource type="FontFile" uid="uid://dm4e1te4jkwie" path="res://assets/player and hud/AstroSpace-0Wl3o.otf" id="2_daoue"]
+[ext_resource type="Texture2D" uid="uid://dyo7k43bksjot" path="res://assets/enemies_sprites/boss_cube.png" id="3_6f7h5"]
+[ext_resource type="Texture2D" uid="uid://cxqs3mkrxaw54" path="res://assets/enemies_sprites/red_drone.png" id="5_r17hl"]
+[ext_resource type="Texture2D" uid="uid://tol3p4dpfoqf" path="res://assets/enemies_sprites/blue_drone.png" id="6_jplxn"]
+[ext_resource type="Texture2D" uid="uid://ce1edvt8mn8lh" path="res://assets/enemies_sprites/green_drone.png" id="7_21j7e"]
+[ext_resource type="Texture2D" uid="uid://cgn74qry7y8cw" path="res://assets/player and hud/SKIBIDID (1).png" id="8_wbhvi"]
+[ext_resource type="Texture2D" uid="uid://cte4g6ghvwxw0" path="res://assets/world_sprites/power_box.png" id="9_tiujn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_my3yf"]
+font = ExtResource("2_daoue")
+font_size = 84
+font_color = Color(1, 0.698039, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fj01s"]
+atlas = ExtResource("3_6f7h5")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1w8k"]
+atlas = ExtResource("3_6f7h5")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08woh"]
+atlas = ExtResource("3_6f7h5")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odiy3"]
+atlas = ExtResource("3_6f7h5")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0ymw"]
+atlas = ExtResource("3_6f7h5")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbewd"]
+atlas = ExtResource("3_6f7h5")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnn04"]
+atlas = ExtResource("3_6f7h5")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42eph"]
+atlas = ExtResource("3_6f7h5")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tpivu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fj01s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1w8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08woh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odiy3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0ymw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbewd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnn04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42eph")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qbn03"]
+font = ExtResource("2_daoue")
+font_size = 17
+font_color = Color(1, 0.698039, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlnoa"]
+atlas = ExtResource("8_wbhvi")
+region = Rect2(0, 0, 288, 288)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_84itx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlnoa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dgsaa"]
+font = ExtResource("2_daoue")
+font_size = 48
+font_color = Color(1, 0.698039, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3pypt"]
+line_spacing = 1.0
+font = ExtResource("2_daoue")
+font_size = 43
+font_color = Color(1, 0.698039, 0, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_k4fse")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3v5lm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -650.0
+offset_top = -412.0
+offset_right = 649.0
+offset_bottom = 512.0
+text = "achviements
+
+
+
+
+
+
+
+
+tab to go back"
+label_settings = SubResource("LabelSettings_my3yf")
+horizontal_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-500, -251)
+scale = Vector2(2.32813, 2.32813)
+sprite_frames = SubResource("SpriteFrames_tpivu")
+autoplay = "default"
+
+[node name="Label" type="Label" parent="AnimatedSprite2D"]
+offset_left = 27.9195
+offset_top = -9.44966
+offset_right = 414.919
+offset_bottom = 13.5503
+text = "hydra slayer: defeated the hydra once"
+label_settings = SubResource("LabelSettings_qbn03")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-504, -135)
+scale = Vector2(2.42102, 2.42102)
+texture = ExtResource("5_r17hl")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D2"]
+position = Vector2(-13.4172, 12.5786)
+scale = Vector2(0.946123, 0.946123)
+texture = ExtResource("6_jplxn")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D2"]
+position = Vector2(13.1377, 13.1377)
+scale = Vector2(0.946123, 0.946123)
+texture = ExtResource("7_21j7e")
+
+[node name="Label" type="Label" parent="Sprite2D2"]
+offset_left = 26.4351
+offset_top = -4.95658
+offset_right = 413.435
+offset_bottom = 18.0434
+text = "champion: defeat 50 enemies"
+label_settings = SubResource("LabelSettings_qbn03")
+
+[node name="winner_ship" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-504, 11)
+rotation = -1.5708
+scale = Vector2(0.805556, 0.731438)
+sprite_frames = SubResource("SpriteFrames_84itx")
+
+[node name="Label" type="Label" parent="winner_ship"]
+offset_left = 22.3444
+offset_top = 128.514
+offset_right = 865.344
+offset_bottom = 177.514
+rotation = 1.57411
+text = "winner: survive 100 seconds"
+label_settings = SubResource("LabelSettings_dgsaa")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-498, 174)
+scale = Vector2(5.15398, 5.21187)
+texture = ExtResource("9_tiujn")
+
+[node name="Label2" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -418.0
+offset_top = 154.0
+offset_right = 483.0
+offset_bottom = 207.0
+rotation = -0.00369155
+text = "survivor: get 10,000 points"
+label_settings = SubResource("LabelSettings_3pypt")
